@@ -21,6 +21,8 @@ class StaticAppTests(unittest.TestCase):
         source = (ROOT / "sw.js").read_text()
         for asset in ["index.html", "styles.css", "app.js", "manifest.webmanifest", "icons/icon.svg"]:
             self.assertIn(asset, source)
+        self.assertIn("client.navigate(client.url)", source)
+        self.assertIn("e.request.mode==='navigate'", source)
 
     def test_whatsapp_is_user_confirmed_deep_link(self):
         source = (ROOT / "app.js").read_text()
