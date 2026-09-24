@@ -10,7 +10,7 @@ PWA móvil y local para preparar los pedidos semanales de Mestizo y abrir WhatsA
 - Historial local de los últimos 50 pedidos y repetición en un toque.
 - Alta, edición, eliminación y ordenación de proveedores y productos.
 - PIN de acceso local, funcionamiento sin conexión e instalación en la pantalla de inicio.
-- Tres proveedores de ejemplo, claramente marcados como **Ejemplo**, que se pueden editar o borrar.
+- Catálogo inicial de 6 distribuidores y 45 productos importado del documento operativo de Mestizo.
 
 No incluye stock, facturas, roles de personal ni automatización de WhatsApp Business.
 
@@ -26,7 +26,7 @@ Abrir `http://localhost:4173`. En el primer acceso se crea un PIN de 4 a 8 cifra
 
 ## Uso
 
-1. En **Editar**, sustituir o borrar los proveedores de ejemplo. Los teléfonos deben incluir prefijo de país sin `+` ni espacios, por ejemplo `34600111222`.
+1. En **Editar**, añadir el teléfono de cada distribuidor. Debe incluir prefijo de país sin `+` ni espacios, por ejemplo `34600111222`. El documento de origen no incluía teléfonos, por lo que se muestran como pendientes.
 2. En **Pedido**, ajustar las cajas. Solo se incluyen las cantidades mayores que cero.
 3. Pulsar **Revisar pedido** y después **Abrir WhatsApp** para cada proveedor.
 4. Revisar el mensaje y pulsar Enviar dentro de WhatsApp.
@@ -77,4 +77,3 @@ python3 -m unittest discover -s tests -v
 ```
 
 Además, se debe comprobar en un móvil: crear PIN, editar un proveedor, preparar un pedido, revisar que no aparecen cantidades cero, abrir WhatsApp, guardar el pedido y repetirlo.
-

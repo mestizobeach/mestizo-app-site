@@ -37,6 +37,13 @@ class StaticAppTests(unittest.TestCase):
         for marker in ["pinHash", "SHA-256", "saveOrder", "repeatOrder", "localStorage"]:
             self.assertIn(marker, source)
 
+    def test_operational_catalog_is_seeded(self):
+        source = (ROOT / "app.js").read_text()
+        for supplier in ["Pachu", "Coca-Cola", "Disceas", "PepsiCo", "Oquendo", "La Bodeguita"]:
+            self.assertIn(supplier, source)
+        self.assertIn("Fuze Tea maracuyá", source)
+        self.assertIn("Añadir teléfono para enviar", source)
+
 
 if __name__ == "__main__":
     unittest.main()
