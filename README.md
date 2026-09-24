@@ -7,7 +7,7 @@ PWA móvil y local para preparar los pedidos semanales de Mestizo y abrir WhatsA
 - Pedido semanal por proveedor con controles grandes `+` / `−`.
 - Los productos con cantidad cero nunca aparecen en el resumen ni en WhatsApp.
 - Revisión antes de abrir WhatsApp; el envío siempre lo confirma la persona en WhatsApp.
-- Historial local de los últimos 50 pedidos y repetición en un toque.
+- Historial local de los últimos 50 pedidos, guardado automáticamente al abrir WhatsApp, y repetición en un toque.
 - Alta, edición, eliminación y ordenación de proveedores y productos.
 - PIN de acceso local, funcionamiento sin conexión e instalación en la pantalla de inicio.
 - Catálogo inicial de 6 distribuidores y 45 productos importado del documento operativo de Mestizo.
@@ -30,7 +30,7 @@ Abrir `http://localhost:4173`. En el primer acceso se crea un PIN de 4 a 8 cifra
 2. En **Pedido**, ajustar las cajas. Solo se incluyen las cantidades mayores que cero.
 3. Pulsar **Revisar pedido** y después **Abrir WhatsApp** para cada proveedor.
 4. Revisar el mensaje y pulsar Enviar dentro de WhatsApp.
-5. Guardar el pedido para poder repetirlo más adelante.
+5. El pedido queda guardado automáticamente en el historial al abrir WhatsApp y se puede repetir más adelante.
 
 ## Datos y privacidad
 

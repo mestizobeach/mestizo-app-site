@@ -36,8 +36,15 @@ class StaticAppTests(unittest.TestCase):
 
     def test_access_and_history_flows_present(self):
         source = (ROOT / "app.js").read_text()
-        for marker in ["pinHash", "SHA-256", "saveOrder", "repeatOrder", "localStorage"]:
+        for marker in ["pinHash", "SHA-256", "recordSentOrder", "repeatOrder", "localStorage"]:
             self.assertIn(marker, source)
+
+    def test_whatsapp_records_order_before_opening(self):
+        source = (ROOT / "app.js").read_text()
+        send = re.search(r"function sendWhatsApp\(id\)\{(.+?)\}\nrender", source, re.S).group(1)
+        self.assertLess(send.index("recordSentOrder(s)"), send.index("window.open"))
+        self.assertNotIn('data-action="save-order"', source)
+        self.assertIn("isRecentDuplicate", source)
 
     def test_operational_catalog_is_seeded(self):
         source = (ROOT / "app.js").read_text()
