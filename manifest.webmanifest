@@ -1,0 +1,12 @@
+{
+  "name": "Mestizo · Pedidos",
+  "short_name": "Mestizo",
+  "description": "Pedidos semanales a proveedores de Mestizo",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fffaf3",
+  "theme_color": "#f45b35",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
