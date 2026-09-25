@@ -8,6 +8,7 @@ PWA móvil y local para preparar los pedidos semanales de Mestizo y abrir WhatsA
 - Los productos con cantidad cero nunca aparecen en el resumen ni en WhatsApp.
 - Revisión antes de abrir WhatsApp; el envío siempre lo confirma la persona en WhatsApp.
 - Historial local de los últimos 50 pedidos, guardado automáticamente al abrir WhatsApp, y repetición en un toque. Cada proveedor enviado desaparece de la revisión y sus cantidades vuelven a cero.
+- Calendario de conciertos de la temporada 2027, del 21 de marzo al 30 de septiembre, con altas, edición, borrado y estados provisional o confirmado.
 - Alta, edición, eliminación y ordenación de proveedores y productos.
 - PIN de acceso local, funcionamiento sin conexión e instalación en la pantalla de inicio.
 - Catálogo inicial de 6 distribuidores y 45 productos importado del documento operativo de Mestizo.
