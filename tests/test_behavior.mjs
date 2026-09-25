@@ -9,7 +9,7 @@ const opened=[];
 const context=vm.createContext({
   console,structuredClone,TextEncoder,crypto,localStorage,
   navigator:{},confirm:()=>true,setTimeout:fn=>fn(),
-  window:{open:(...args)=>opened.push(args)},
+  window:{open:(...args)=>{opened.push(args);assert.equal(vm.runInContext("state.quantities['pachu-estrella']||0",context),0,'screen state is cleared before WhatsApp takes control')}},
   document:{querySelector:s=>s==='#app'?appNode:s==='#toast'?toastNode:null,querySelectorAll:()=>[]},
   addEventListener(){}
 });

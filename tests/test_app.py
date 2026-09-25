@@ -49,7 +49,8 @@ class StaticAppTests(unittest.TestCase):
         source = (ROOT / "app.js").read_text()
         send = re.search(r"function sendWhatsApp\(id\)\{(.+?)\}\nrender", source, re.S).group(1)
         self.assertLess(send.index("recordSentOrder(s)"), send.index("window.open"))
-        self.assertLess(send.index("window.open"), send.index("delete state.quantities[p.id]"))
+        self.assertLess(send.index("delete state.quantities[p.id]"), send.index("window.open"))
+        self.assertLess(send.index("render()"), send.index("window.open"))
         self.assertNotIn('data-action="save-order"', source)
         self.assertIn("isRecentDuplicate", source)
 
