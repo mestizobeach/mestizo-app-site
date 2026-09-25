@@ -34,6 +34,12 @@ class StaticAppTests(unittest.TestCase):
         source = (ROOT / "app.js").read_text()
         self.assertGreaterEqual(len(re.findall(r"quantities\[p\.id\]\s*>\s*0", source)), 2)
 
+    def test_review_button_is_fixed_above_navigation(self):
+        styles = (ROOT / "styles.css").read_text()
+        cta = re.search(r"\.cta-bar\{([^}]+)\}", styles).group(1)
+        self.assertIn("position:fixed", cta)
+        self.assertIn("bottom:calc(82px + env(safe-area-inset-bottom))", cta)
+
     def test_access_and_history_flows_present(self):
         source = (ROOT / "app.js").read_text()
         for marker in ["pinHash", "SHA-256", "recordSentOrder", "repeatOrder", "localStorage"]:
