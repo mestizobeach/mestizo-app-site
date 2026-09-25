@@ -19,7 +19,15 @@ vm.runInContext("sendWhatsApp('pachu')",context);
 assert.equal(vm.runInContext('state.history.length',context),1,'first WhatsApp tap records the order');
 assert.equal(vm.runInContext('state.history[0].groups[0].items[0].quantity',context),2);
 assert.equal(opened.length,1,'WhatsApp opens after recording');
+assert.equal(vm.runInContext("state.quantities['pachu-estrella']||0",context),0,'sent supplier quantities are cleared');
+assert.equal(vm.runInContext('view',context),'order','last completed supplier returns to the main order screen');
 vm.runInContext("sendWhatsApp('pachu')",context);
-assert.equal(vm.runInContext('state.history.length',context),1,'repeat tap does not duplicate recent identical order');
-assert.equal(opened.length,2,'repeat tap still opens WhatsApp');
+assert.equal(vm.runInContext('state.history.length',context),1,'cleared order cannot be added twice');
+assert.equal(opened.length,1,'cleared order cannot reopen WhatsApp accidentally');
+
+vm.runInContext("view='summary';state.suppliers[1].phone='34600111223';state.quantities['pachu-estrella']=1;state.quantities['cocacola-normal']=3",context);
+vm.runInContext("sendWhatsApp('pachu')",context);
+assert.equal(vm.runInContext('view',context),'summary','review remains open while another supplier is pending');
+assert.equal(vm.runInContext("state.quantities['cocacola-normal']",context),3,'other supplier quantities remain selected');
+assert.equal(vm.runInContext("state.quantities['pachu-estrella']||0",context),0,'completed supplier disappears from review');
 console.log('WhatsApp history behavior OK');
