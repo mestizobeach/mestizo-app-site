@@ -31,6 +31,7 @@ vm.runInContext("sendWhatsApp('pachu')",context);
 assert.equal(vm.runInContext('view',context),'summary','review remains open while another supplier is pending');
 assert.equal(vm.runInContext("state.quantities['cocacola-normal']",context),3,'other supplier quantities remain selected');
 assert.equal(vm.runInContext("state.quantities['pachu-estrella']||0",context),0,'completed supplier disappears from review');
+assert.equal(vm.runInContext("orderedTotals().find(g=>g.supplierId==='pachu').items.find(i=>i.productId==='pachu-estrella').quantity",context),3,'box totals add quantities across sent orders');
 
 vm.runInContext("modal={type:'concert'};concertSubmit({preventDefault(){},target:{artist:'Grupo Test',date:'2027-06-15',time:'21:30',status:'confirmed',notes:'Terraza'}})",context);
 assert.equal(vm.runInContext('state.concerts.length',context),1,'concert can be created');

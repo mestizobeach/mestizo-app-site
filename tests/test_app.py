@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class StaticAppTests(unittest.TestCase):
     def test_required_assets_exist(self):
-        for name in ["index.html", "styles.css", "concerts.css", "app.js", "sw.js", "manifest.webmanifest", "icons/icon.svg"]:
+        for name in ["index.html", "styles.css", "concerts.css", "orders.css", "app.js", "sw.js", "manifest.webmanifest", "icons/icon.svg"]:
             self.assertTrue((ROOT / name).is_file(), name)
 
     def test_manifest_is_valid_and_installable(self):
@@ -19,7 +19,7 @@ class StaticAppTests(unittest.TestCase):
 
     def test_service_worker_precaches_core_assets(self):
         source = (ROOT / "sw.js").read_text()
-        for asset in ["index.html", "styles.css", "concerts.css", "app.js", "manifest.webmanifest", "icons/icon.svg"]:
+        for asset in ["index.html", "styles.css", "concerts.css", "orders.css", "app.js", "manifest.webmanifest", "icons/icon.svg"]:
             self.assertIn(asset, source)
         self.assertIn("client.navigate(client.url)", source)
         self.assertIn("e.request.mode==='navigate'", source)
@@ -64,6 +64,11 @@ class StaticAppTests(unittest.TestCase):
     def test_concert_calendar_crud_and_season_range(self):
         source = (ROOT / "app.js").read_text()
         for marker in ["concertsView", "concertSubmit", "deleteConcert", "2027-03-21", "2027-09-30"]:
+            self.assertIn(marker, source)
+
+    def test_ordered_box_totals_are_available(self):
+        source = (ROOT / "app.js").read_text()
+        for marker in ["orderedTotals", "totalsView", "Cajas pedidas", "Acumulado de todos los pedidos enviados"]:
             self.assertIn(marker, source)
 
 
