@@ -1,0 +1,5 @@
+.expense-categories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:18px}
+.expense-categories button{border:1px solid var(--line);background:white;color:var(--ink);border-radius:15px;padding:13px 5px;min-height:68px}
+.expense-categories strong,.expense-categories small{display:block}
+.expense-categories small{margin-top:5px;font-size:12px}
+.expense-categories button.active{background:var(--sea);color:white;border-color:var(--sea)}

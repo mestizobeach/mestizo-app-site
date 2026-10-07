@@ -13,9 +13,15 @@ const server=http.createServer((req,res)=>{const pathname=decodeURIComponent(new
  await page.goto(`http://127.0.0.1:${server.address().port}`);
  await page.locator('input[name=pin]').fill('1234');await page.locator('#pin-form button').click();
  await page.locator('.home-wordmark').waitFor();
- assert.equal(await page.locator('.home-tile').count(),6);
+ assert.equal(await page.locator('.home-tile').count(),7);
  await page.screenshot({path:'/private/tmp/mestizo-home-20261007.png',fullPage:true});
- for(const section of ['order','history','concerts','revenue','edit']){await page.locator(`.home-tile[data-view="${section}"]`).click();await page.locator('.home-brand').click();await page.locator('.home-wordmark').waitFor()}
+ for(const section of ['order','history','concerts','revenue','expenses','edit']){await page.locator(`.home-tile[data-view="${section}"]`).click();await page.locator('.home-brand').click();await page.locator('.home-wordmark').waitFor()}
+ await page.locator('.home-tile[data-view="expenses"]').click();
+ await page.locator('#expense-date').fill('2026-10-07');await page.locator('#expense-concept').fill('Artista de prueba');await page.locator('#expense-amount').fill('150,50');await page.locator('#expense-form button.primary').click();
+ await page.locator('[data-expense-edit]').waitFor();assert.match(await page.locator('.revenue-summary').innerText(),/150,50/);
+ await page.locator('[data-expense-edit]').click();await page.locator('#expense-amount').fill('200');await page.locator('#expense-form button.primary').click();assert.equal(await page.locator('[data-expense-edit]').count(),1);assert.match(await page.locator('.revenue-summary').innerText(),/200,00/);
+ page.once('dialog',dialog=>dialog.accept());await page.locator('[data-expense-edit]').click();await page.locator('#expense-delete').click();await page.getByText('Todavía no hay gastos de esta categoría en el mes seleccionado.',{exact:true}).waitFor();
+ await page.locator('.home-brand').click();
  await page.locator('.home-tile[data-view="invoices"]').click();
  const base64=await page.evaluate(()=>{const c=document.createElement('canvas');c.width=1600;c.height=1000;const ctx=c.getContext('2d');ctx.fillStyle='white';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='black';ctx.font='48px Arial';['FACTURA MESTIZO','Fecha de emision: 07/10/2026','Proveedor Costa','Numero factura 1234','Total factura 120,00 EUR'].forEach((s,i)=>ctx.fillText(s,80,100+i*130));return c.toDataURL('image/png').split(',')[1]});
  await page.locator('#invoice-file').setInputFiles({name:'prueba.png',mimeType:'image/png',buffer:Buffer.from(base64,'base64')});

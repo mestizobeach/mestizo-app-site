@@ -47,3 +47,11 @@ assert.equal(vm.runInContext('state.revenue.length',context),1,'editing a day re
 assert.throws(()=>vm.runInContext("saveRevenue('2026-10-08','-1','20')",context));
 assert.equal(vm.runInContext('state.revenue.length',context),1,'invalid amounts leave data untouched');
 console.log('Daily revenue behavior OK');
+vm.runInContext("saveExpense(null,'artists','2026-10-07','Actuación','125,50');saveExpense(null,'staff','2026-10-07','Turno','80');saveExpense(null,'extras','2026-09-30','Compra','10')",context);
+assert.equal(vm.runInContext("expenseTotals('2026-10').total",context),20550);
+vm.runInContext("saveExpense(state.expenses[0].id,'artists','2026-10-07','Actuación corregida','100')",context);
+assert.equal(vm.runInContext('state.expenses.length',context),3,'editing an expense does not duplicate it');
+assert.equal(vm.runInContext("expenseTotals('2026-10').artists",context),10000);
+assert.throws(()=>vm.runInContext("saveExpense(null,'artists','2026-10-07','Error','-20')",context));
+assert.throws(()=>vm.runInContext("saveExpense(null,'artists','2026-02-31','Error','20')",context));
+console.log('Expense categories, monthly totals and editing OK');
