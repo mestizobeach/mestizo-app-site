@@ -1,0 +1,16 @@
+.home-brand{border:0;background:transparent;padding:0;text-align:left;color:var(--ink)}
+.home-app{padding-bottom:26px}
+.home-hero{text-align:center;padding:28px 0 32px}
+.home-wordmark{font-size:clamp(46px,13vw,82px);font-weight:950;letter-spacing:-3px;line-height:1;margin:14px 0;color:var(--ink)}
+.home-hero>p:last-child{color:var(--muted);font-size:14px;margin:0}
+.home-sections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.home-tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:20px 16px;min-height:158px;border:1px solid var(--line);border-radius:22px;background:white;box-shadow:var(--shadow);color:var(--ink);text-align:left}
+.home-tile-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:#e5f1ef;color:var(--sea);font-size:24px;margin-bottom:5px}
+.home-tile strong{font-size:17px;letter-spacing:-.3px}
+.home-tile small{font-size:12px;line-height:1.45;color:var(--muted)}
+.home-tile-arrow{position:absolute;top:18px;right:17px;color:var(--muted);font-size:18px}
+.home-tile:first-child{background:var(--sea);color:white;border-color:var(--sea)}
+.home-tile:first-child small,.home-tile:first-child .home-tile-arrow{color:#cfe5df}
+.home-tile:active{transform:scale(.98)}
+.home-tile:focus-visible,.home-brand:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+@media(min-width:650px){.home-sections{grid-template-columns:repeat(3,minmax(0,1fr))}.home-hero{padding:36px 0 40px}}
