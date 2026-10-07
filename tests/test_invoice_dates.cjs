@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');
+const {findInvoiceDates}=require('../invoices.js');
+assert.deepEqual(findInvoiceDates('Fecha factura: 07/10/2026'),[{date:'2026-10-07',score:2}]);
+assert.equal(findInvoiceDates('Fecha: 07/10/2026\nVencimiento: 07/11/2026')[0].date,'2026-10-07');
+assert.equal(findInvoiceDates('Fecha de emisión: 7 de octubre de 2026')[0].date,'2026-10-07');
+assert.equal(findInvoiceDates('2026-10-07')[0].date,'2026-10-07');
+assert.equal(findInvoiceDates('31/02/2026').length,0);
+assert.equal(findInvoiceDates('29/02/2024').length,1);
+assert.equal(findInvoiceDates('Fecha: 07/10/2026\nFecha: 08/10/2026').length,2);
+assert.equal(findInvoiceDates('Factura 123456 sin fecha').length,0);
+console.log('Invoice date recognition OK');

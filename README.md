@@ -1,5 +1,7 @@
 # Mestizo · Pedidos
 
+Facturas permite hacer una foto o elegir una imagen, leer la fecha con Tesseract.js dentro del dispositivo y archivar por mes. Las imágenes se almacenan en IndexedDB, nunca en el repositorio ni en un servicio externo. Cada imagen se optimiza a un máximo de 2600 píxeles. Una lectura clara se archiva automáticamente; las lecturas dudosas requieren confirmar la fecha. Se pueden consultar, descargar, corregir la fecha y eliminar. Borrar datos del navegador elimina también las fotos: conviene descargar copias. La primera lectura necesita Internet para cargar el motor de OCR; después sus componentes se conservan en la caché offline según el espacio disponible. El OCR puede cometer errores: revisar la fecha archivada es recomendable.
+
 También incluye Facturación: registro diario de tarjeta y efectivo en euros, edición de días existentes y resumen mensual. Los importes se almacenan en céntimos para evitar errores de redondeo y permanecen en este dispositivo.
 
 PWA móvil y local para preparar los pedidos semanales de Mestizo y abrir WhatsApp con el mensaje de cada proveedor ya redactado.
