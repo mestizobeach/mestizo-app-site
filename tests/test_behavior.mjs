@@ -40,3 +40,10 @@ assert.match(vm.runInContext('concertsView()',context),/Grupo Test/,'concert app
 vm.runInContext("deleteConcert(state.concerts[0].id)",context);
 assert.equal(vm.runInContext('state.concerts.length',context),0,'concert can be deleted');
 console.log('WhatsApp history behavior OK');
+vm.runInContext("saveRevenue('2026-10-07','125,50','34.25')",context);
+assert.equal(vm.runInContext('state.revenue[0].card+state.revenue[0].cash',context),15975);
+vm.runInContext("saveRevenue('2026-10-07','100','20')",context);
+assert.equal(vm.runInContext('state.revenue.length',context),1,'editing a day replaces it without double-counting');
+assert.throws(()=>vm.runInContext("saveRevenue('2026-10-08','-1','20')",context));
+assert.equal(vm.runInContext('state.revenue.length',context),1,'invalid amounts leave data untouched');
+console.log('Daily revenue behavior OK');

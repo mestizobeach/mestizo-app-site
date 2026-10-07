@@ -1,5 +1,7 @@
 # Mestizo · Pedidos
 
+También incluye Facturación: registro diario de tarjeta y efectivo en euros, edición de días existentes y resumen mensual. Los importes se almacenan en céntimos para evitar errores de redondeo y permanecen en este dispositivo.
+
 PWA móvil y local para preparar los pedidos semanales de Mestizo y abrir WhatsApp con el mensaje de cada proveedor ya redactado.
 
 ## Qué incluye
